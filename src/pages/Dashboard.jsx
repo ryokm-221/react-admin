@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import Statuscard from '../components/status-card/Statuscard'
 import Table from '../components/table/Table'
+import Badge from '../components/badge/Badge'
 
 import statusCards from '../assets/json/status-card-data.json'
 import topCustomers from '../assets/json/top-customers.json'
@@ -39,12 +40,12 @@ const chartOptions = {
     }
   }
 }
-// const orderStatus = {
-//   "shipping": "primary",
-//   "pending": "warning",
-//   "paid": "success",
-//   "refund": "danger"
-// }
+const orderStatus = {
+  "shipping": "primary",
+  "pending": "warning",
+  "paid": "success",
+  "refund": "danger"
+}
 
 const renderCustomerHead = (item, index) => (
   <th key={index}>{item}</th>
@@ -62,14 +63,14 @@ const renderOrderHead = (item, index) => (
   <th key={index}>{item}</th>
 )
 
-const renderOrderBody = (item, index) => (
+const renderOrderBody = (item) => (
   <tr>
     <td>{item.id}</td>
     <td>{item.user}</td>
     <td>{item.price}</td>
     <td>{item.date}</td>
     <td>
-      <span>{item.status}</span>
+      <Badge type={orderStatus[item.status]} content={item.status}/>
     </td>
   </tr>
 )
